@@ -72,7 +72,7 @@ addEventListener("fetch", async event => {
             }
 
             if (originUrl.search.startsWith("?")) {
-                const filteredHeaders = {};
+                var filteredHeaders = {};
                 for (const [key, value] of event.request.headers.entries()) {
                     if (
                         (key.match("^origin") === null) &&
@@ -95,9 +95,9 @@ addEventListener("fetch", async event => {
                 });
 
                 const response = await fetch(targetUrl, newRequest);
-                const responseHeaders = new Headers(response.headers);
-                const exposedHeaders = [];
-                const allResponseHeaders = {};
+                var responseHeaders = new Headers(response.headers);
+                var exposedHeaders = [];
+                var allResponseHeaders = {};
                 for (const [key, value] of response.headers.entries()) {
                     exposedHeaders.push(key);
                     allResponseHeaders[key] = value;
